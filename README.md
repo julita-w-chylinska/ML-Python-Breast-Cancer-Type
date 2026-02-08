@@ -34,12 +34,25 @@ Zbiór jest dostępny w plikach tego repozytorium (plik o nazwie `Cancer_Data.cs
 
 # Eksploracja danych
 
+Podejrzenie pierwszych 30 rekordów
 ```Python
 df.head(30)
 ```
-
+Spis wszystkich zmiennych (nazw kolumn) wraz z liczebnością niepustych wartości i typem danych
 ```Python
 df.info()
+```
+Sprawdzenie obecności braków danych dla każdej zmiennej (na wszelki wypadek, mimo że było to "ręcznie" widoczne w wyniku poprzedniego kodu)
+```Python
+df.isna().max()
+```
+Sprawdzenie wartości zmiennej `diagnosis` wraz z ich liczebnością
+```Python
+df['diagnosis'].value_counts()
+```
+Sprawdzenie podstawowych statystyk dla zmiennych numerycznych/liczbowych
+```Python
+df.describe()
 ```
 
 Zbiór danych okazuje się mieć 569 rekordów oraz następujące zmienne:
