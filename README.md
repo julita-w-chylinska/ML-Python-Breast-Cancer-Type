@@ -58,8 +58,28 @@ df.describe()
 Zbiór danych okazuje się mieć 569 rekordów oraz następujące zmienne:
 * `id` o typie "int64"
 * `diagnosis` o typie "object" z wartościami "M" (oznaczającą "malignant") i "B" (oznaczającą "benign")
-* 29 zmiennych o typie "float64": `radius_mean`, `texture_mean`, `perimeter_mean`, `area_mean`, `smoothness_mean`, `compactness_mean`, `concavity_mean`, `concave points_mean`, `symmetry_mean`, `fractal_dimension_mean`, `radius_se`, `texture_se`, `perimeter_se`, `area_se`, `smoothness_se`, `compactness_se`, `concavity_se`, `concave points_se`, `symmetry_se`, `fractal_dimension_se`, `radius_worst`, `texture_worst`, `perimeter_worst`, `area_worst`, `smoothness_worst`, `compactness_worst`, `concavity_worst`, `concave points_worst`, `symmetry_worst`, `fractal_dimension_worst`
+* 29 zmiennych numerycznych/liczbowych/ciągłych o typie "float64": `radius_mean`, `texture_mean`, `perimeter_mean`, `area_mean`, `smoothness_mean`, `compactness_mean`, `concavity_mean`, `concave points_mean`, `symmetry_mean`, `fractal_dimension_mean`, `radius_se`, `texture_se`, `perimeter_se`, `area_se`, `smoothness_se`, `compactness_se`, `concavity_se`, `concave points_se`, `symmetry_se`, `fractal_dimension_se`, `radius_worst`, `texture_worst`, `perimeter_worst`, `area_worst`, `smoothness_worst`, `compactness_worst`, `concavity_worst`, `concave points_worst`, `symmetry_worst`, `fractal_dimension_worst`
 * prawdopodobnie przypadkowo utworzona zmienna `Unnamed: 32` z samymi pustymi wartościami (NaN)
 
+# Czyszczenie i przekształcanie danych
 
+The data exhibited a reasonable/hight level of quality so data preparation involved only two actions:
+1) Usunięcie ostatniej zmiennej (`Unnamed: 32`)
+```Python
+del df[df.columns[-1]]
+```
+2) Enkodowanie zmiennej celu z tekstowej/kategorycznej `diagnosis` na numeryczną `target` (chcemy modelować zjawisko wykrywania nowotworu złośliwego, więc jako 1 oznaczymy właśnie ten typ nowotworu)
+```Python
+df['target'] = (df['diagnosis'] == 'M').astype(int)
+```
+
+# Sprawdzanie korelacji między zmiennymi (w celu wybrania najważniejszych do modelu)
+
+Wyświetlenie macierzy korelacji (wszystkich zmiennych ze wszystkimi zmiennymi)
+```Python
+plt.figure(figsize = (17,15))
+sns.heatmap(round(df[df.columns[2:]].corr('spearman').sort_values(by = 'target'), 2), annot = True, linewidths = 0.1)
+plt.show()
+```Python
+<img width="1420" height="1360" alt="Correlation_Matrix_Cancer" src="https://github.com/user-attachments/assets/0069a3bd-2c65-457e-ad72-03670a9725a8" />
 
