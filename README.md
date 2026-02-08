@@ -82,7 +82,9 @@ sns.heatmap(round(df[df.columns[2:]].corr('spearman').sort_values(by = 'target')
 plt.show()
 ```
 <img width="1420" height="1360" alt="Correlation_Matrix_Cancer" src="https://github.com/user-attachments/assets/76b76a3b-f456-485d-bb79-baf471ef0824" />
+
 Wyświelenie macierzy korelacji pomiędzy zmienną celu a resztą zmiennych oraz zmienną najmocniej skorelowaną ze zmienną celu (`perimeter_worst`) a resztą zmiennych
+
 ```Python
 plt.figure(figsize = (6,8))
 sns.heatmap(round(df[df.columns[2:]].corr('spearman').sort_values(by = 'target'), 2)[['target', 'perimeter_worst']],
