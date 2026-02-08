@@ -80,6 +80,7 @@ Wyświetlenie macierzy korelacji (wszystkich zmiennych ze wszystkimi zmiennymi)
 plt.figure(figsize = (17,15))
 sns.heatmap(round(df[df.columns[2:]].corr('spearman').sort_values(by = 'target'), 2), annot = True, linewidths = 0.1)
 plt.show()
-```Python
-<img width="1420" height="1360" alt="Correlation_Matrix_Cancer" src="https://github.com/user-attachments/assets/0069a3bd-2c65-457e-ad72-03670a9725a8" />
+```
+<img width="1420" height="1360" alt="Correlation_Matrix_Cancer" src="https://github.com/user-attachments/assets/76b76a3b-f456-485d-bb79-baf471ef0824" />
+
 
