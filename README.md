@@ -243,6 +243,66 @@ accuracy_score(test_y, test_pred)
 
 Wartość Accuracy Score dla zbioru testowego wyszła na poziomie około 0.96.
 
-# Wniosek dla aktualnej jakości modelu
+# Wniosek dla aktualnej jakości / aktualnych metryk modelu
 
 Jakość modelu jest bardzo wysoka i stabilna (nie występuje zjawisko przeuczenia i związanego z nim spadku jakości na zbiorze testowym względem treningowego). W kolejnym kroku należy zastanowić się nad celem "biznesowym" (czy zależy nam bardziej na poprawnym diagnozowaniu **wszystkich** nowotworów złośliwych kosztem błędnego diagnozowania nowotworów łagodnych jako złośliwe, czy może odwrotnie) w celu lepszego dopasowania modelu do naszych potrzeb.
+
+# Analizowanie różnych poziomów odcięcia / tresholdów / punktów cut-off w oparciu o krzywą ROC
+
+Przygotowanie predykcji (dla zbioru treningowego i testowego) w postaci prawdopodobieństw przynależności do klasy 1 (nowotwór złośliwy)
+
+```Python
+train_pred_p = model_1.predict_proba(train_x)[:,1]
+test_pred_p = model_1.predict_proba(test_x)[:,1]
+```
+
+Przygotowanie danych z różnymi poziomami odcięcia / tresholdami / punktami cut-off i wynikających z nich metryk FPR i TPR – w celu stworzenia wykresu krzywej ROC i wyboru najlepszego poziomu odcięcia / tresholdu / punktu cut-off dla naszych potrzeb
+
+```Python
+fpr_train, tpr_train, threshold_train = roc_curve(train_y, train_pred_p)
+fpr_test, tpr_test, threshold_test = roc_curve(test_y, test_pred_p)
+```
+
+Stworzenie wykresu krzywej ROC
+
+```
+plt.plot(fpr_train, tpr_train, label = "train")
+plt.plot(fpr_test, tpr_test, label = "test")
+plt.plot(np.arange(0,1,0.01), np.arange(0,1,0.01), '--')
+plt.legend()
+plt.annotate(f'AUC train: {auc_train}', xy = [0.2, 0.8])
+plt.annotate(f'AUC test: {auc_test}', xy = [0.2, 0.75])
+
+plt.xlabel("False Positive Rate (FPR)")
+plt.ylabel("True Positive Rate (TPR)")
+
+plt.title(f'Krzywa ROC')
+plt.show()
+```
+
+<img width="567" height="455" alt="ROC_Curve_Cancer" src="https://github.com/user-attachments/assets/b678ca59-12fd-4e33-8960-ea6d3a0bb848" />
+
+
+Kształt krzywej ROC i wartości pól pod krzywą ROC (AUC) potwierdzają wysoką jakość modelu.
+
+Jeśli zależałoby nam na wykrywaniu **wszystkich** nowotworów złośliwych (czyli poprawnym diagnozowaniu obserwacji z nowotworem złośliwym jako wynik pozytywny), musielibyśmy wybrać taki treshold, który daje metrykę TPR=1 przy jednocześnie jak najmniejszej metryce FPR.
+
+Można to znaleźć taki treshold następującym kodem (zwrócenie indeksu pierwszej wartości 1, która pojawiła się w liście `tpr_test` i znalezenie tresholdu o tym indeksie):
+
+```Python
+idxs = np.where(tpr_test == 1.0)[0]
+
+if idxs.size == 0:
+    raise ValueError("TPR nigdy nie osiąga dokładnie wartości 1.0 dla podanych progów.")
+
+idx_first_1 = idxs[0]
+
+threshold_at_first_1 = threshold_test[idx_first_1]
+fpr_at_first_1 = fpr_test[idx_first_1]
+
+idx_first_1, threshold_at_first_1, fpr_at_first_1
+```
+
+<img width="458" height="50" alt="image" src="https://github.com/user-attachments/assets/56e30263-00ef-4672-8957-d4fde4d9494b" />
+
+Poziom odcięcia, dla którego wszystkie nowotwory złośliwe byłyby zawsze wykrywane wynosiłby 0.209611944215763. Trzeba jednak mieć na uwadze, że przy tym poziomie odcięcia metryka FPR wynosi 0.09375, co oznacza, że około 9% nowotworów łagodnych będzie błędnie diagnozowanych jako złośliwe.
