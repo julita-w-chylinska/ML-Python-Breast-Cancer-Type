@@ -157,9 +157,66 @@ for i in x_names:
     outlier_column_names.append(f'{i}_outlier')
 ```
 
-Stworzenie nowej kolumny/zmiennej określającej, czy w danym wierszu pojawiła się wartość odstająca (outlier) dla **którejkolwiek** ze zmiennych (mających wziąć udział w modelu).
+W wyniku zadziałania powyższej pętli, to zbioru danych zostały dołączone następujące kolumny/zmienne (których nazwy zostały mieszczone w liście `outlier_column_names`):
+
+<img width="416" height="190" alt="Zrzut ekranu 2026-02-09 161311" src="https://github.com/user-attachments/assets/093cf03d-e8cb-4c7f-8eea-ac5fc857162b" />
+
+Stworzenie nowej kolumny/zmiennej określającej, czy w danym wierszu/obserwacji/rekordzie pojawiła się wartość odstająca (outlier) dla **którejkolwiek** ze zmiennych (mających wziąć udział w modelu).
 
 ```Python
 df['outlier_total'] = df[outlier_column_names].max(axis = 1)
 ```
+
+Zorientowanie się w ilości obserwacji/rekordów, które zostają uznane w całości jako outliery (nie będą wzięte pod uwagę w trenowaniu i testowaniu modelu).
+
+```Python
+df['outlier_total'].value_counts()
+```
+
+# Podział zbioru na treningowe i testowe
+
+Import obiektu potrzebnego do wykonania podziału
+
+```Python
+from sklearn.model_selection import train_test_split
+```
+
+Zdefiniowanie zbioru X (ze zmiennymi wejściowymi/objaśniającymi) i zbioru y (ze zmienną wyjściową/objaśnianą/celu)
+
+```Python
+X = df.loc[~(df.outlier_total), x_names]
+y = df.loc[~(df.outlier_total), 'target']
+```
+
+Podział zbiorów X i y na podzbiory treningowe i testowe (z określeniem ich proporcji)
+
+```Python
+train_x, test_x, train_y, test_y = train_test_split(X, y, test_size = 0.3, random_state = 123)
+```
+
+# Modelowanie / Tworzenie modelu
+
+Stworzenie obiektu modelu
+
+```Python
+model_1 = LogisticRegression()
+```
+
+Estymacja modelu
+
+```Python
+model_1.fit(train_x, train_y)
+```
+
+# Ocena jakości modelu
+
+Wywołanie / stworzenie predykcji na zbiorze treningowym i testowym
+
+```Python
+train_pred = model_1.predict(train_x)
+test_pred = model_1.predict(test_x)
+```
+
+
+
 
