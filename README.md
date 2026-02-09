@@ -8,7 +8,7 @@ This project demonstrates the [basic] proccess of building ML model for predicti
 
 ## Project Structure and Results
 
-# Import potrzebnych bibliotek i obiektów
+### Import potrzebnych bibliotek i obiektów
 
 ```Python
 
@@ -21,7 +21,7 @@ import seaborn as sns
 
 ```
 
-# Załadowanie zbioru danych
+### Załadowanie zbioru danych
 
 ```Python
 
@@ -32,7 +32,7 @@ df = pd.read_csv('data/Cancer_Data.csv')
 
 Zbiór jest dostępny w plikach tego repozytorium (plik o nazwie `Cancer_Data.csv`) oraz na stronie https://www.kaggle.com/datasets/erdemtaha/cancer-data
 
-# Eksploracja danych
+### Eksploracja danych
 
 Podejrzenie pierwszych 30 rekordów
 ```Python
@@ -73,7 +73,7 @@ del df[df.columns[-1]]
 df['target'] = (df['diagnosis'] == 'M').astype(int)
 ```
 
-# Sprawdzanie korelacji między zmiennymi (w celu wybrania najważniejszych do modelu)
+### Sprawdzanie korelacji między zmiennymi (w celu wybrania najważniejszych do modelu)
 
 Wyświetlenie macierzy korelacji (wszystkich zmiennych ze wszystkimi zmiennymi)
 ```Python
@@ -127,13 +127,13 @@ plt.show()
 
 Następną zmienną spełniającą warunki jest `texture_worst`. Jest to też ostatnia zmienna, która spełniałaby ustalone warunki.
 
-# Ostateczny wybór zmiennych do modelu i zapisanie ich na liście
+### Ostateczny wybór zmiennych do modelu i zapisanie ich na liście
 
 ```Python
 x_names = ['perimeter_worst', 'perimeter_se', 'compactness_worst', 'concave points_se', 'texture_worst']
 ```
 
-# Badanie outlierów
+### Badanie outlierów
 
 Do zbadania outlierów użyjemy metody z rozstępem międzykwartylowym [tu może jeszcze dopisać wyjaśnienie]
 
@@ -173,7 +173,7 @@ Zorientowanie się w ilości obserwacji/rekordów, które zostają uznane w cał
 df['outlier_total'].value_counts()
 ```
 
-# Podział zbioru na treningowe i testowe
+### Podział zbioru na treningowe i testowe
 
 Import obiektu potrzebnego do wykonania podziału
 
@@ -194,7 +194,7 @@ Podział zbiorów X i y na podzbiory treningowe i testowe (z określeniem ich pr
 train_x, test_x, train_y, test_y = train_test_split(X, y, test_size = 0.3, random_state = 123)
 ```
 
-# Modelowanie / Tworzenie modelu
+### Modelowanie / Tworzenie modelu
 
 Stworzenie obiektu modelu
 
@@ -208,7 +208,7 @@ Estymacja modelu
 model_1.fit(train_x, train_y)
 ```
 
-# Ocena jakości modelu
+### Ocena jakości modelu
 
 Wywołanie / stworzenie predykcji na zbiorze treningowym i testowym
 
@@ -265,11 +265,11 @@ Wartość TNR (spesitivity) dla zbioru testowego wyszła na poziomie około 0.96
 
 Wartość FPR dla zbioru testowego wyszła na poziomie około 0.031.
 
-# Wniosek dla aktualnej jakości / aktualnych metryk modelu
+### Wniosek dla aktualnej jakości / aktualnych metryk modelu
 
 Jakość modelu jest bardzo wysoka i stabilna (nie występuje zjawisko przeuczenia i związanego z nim spadku jakości na zbiorze testowym względem treningowego). Spośród wszystkich przypadków nowotworów złośliwych około 95% byłoby przewidywane/diagnozowane przez model poprawnie, natomiast spośród wszystkich przypadków nowotworów łagodnych około 97% byłoby przewidywanych/diagnozowanych przez model poprawnie. W kolejnym kroku należy zastanowić się nad celem "biznesowym" (czy zależy nam bardziej na poprawnym diagnozowaniu **wszystkich** nowotworów złośliwych kosztem zwiększonego błędnego diagnozowania nowotworów łagodnych jako złośliwe, czy może odwrotnie) w celu lepszego dopasowania modelu do naszych potrzeb.
 
-# Analizowanie różnych poziomów odcięcia / tresholdów / punktów cut-off w oparciu o krzywą ROC
+### Analizowanie różnych poziomów odcięcia / tresholdów / punktów cut-off w oparciu o krzywą ROC
 
 Przygotowanie predykcji (dla zbioru treningowego i testowego) w postaci prawdopodobieństw przynależności do klasy 1 (nowotwór złośliwy)
 
