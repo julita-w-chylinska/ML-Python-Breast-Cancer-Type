@@ -133,4 +133,33 @@ Następną zmienną spełniającą warunki jest `texture_worst`. Jest to też os
 x_names = ['perimeter_worst', 'perimeter_se', 'compactness_worst', 'concave points_se', 'texture_worst']
 ```
 
+# Badanie outlierów
+
+Do zbadania outlierów użyjemy metody z rozstępem międzykwartylowym [tu może jeszcze dopisać wyjaśnienie]
+
+Zdefiniowanie funkcji identyfikującej outliery
+
+```Python
+def find_outliers(x, a = 1.5):
+    q1, q3 = np.quantile(x, [0.25, 0.75])
+    iqr = q3 - q1
+    x_min = q1 - a * iqr
+    x_max = q3 + a * iqr
+    return (x < x_min) | (x > x_max)
+```
+
+Zbudowanie pętli tworzącej nowe kolumny zawierające informacje, czy w danym wierszu pojawił się outlier dla danej zmiennej (mającej wziąć udział w modelu), oraz dodającej nazwy tych kolumn do listy (będzie ona za chwilę potrzebna).
+
+```Python
+outlier_column_names = []
+for i in x_names:
+    df[f'{i}_outlier'] = find_outliers(df[i])
+    outlier_column_names.append(f'{i}_outlier')
+```
+
+Stworzenie nowej kolumny/zmiennej określającej, czy w danym wierszu pojawiła się wartość odstająca (outlier) dla **którejkolwiek** ze zmiennych (mających wziąć udział w modelu).
+
+```Python
+df['outlier_total'] = df[outlier_column_names].max(axis = 1)
+```
 
