@@ -11,23 +11,19 @@ This project demonstrates the [basic] proccess of building ML model for predicti
 ### Import potrzebnych bibliotek i obiektów
 
 ```Python
-
 from  sklearn.linear_model import LogisticRegression
 import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-
 ```
 
 ### Załadowanie zbioru danych
 
 ```Python
-
 os.getcwd()
 df = pd.read_csv('data/Cancer_Data.csv')
-
 ```
 
 Zbiór jest dostępny w plikach tego repozytorium (plik o nazwie `Cancer_Data.csv`) oraz na stronie https://www.kaggle.com/datasets/erdemtaha/cancer-data
@@ -35,22 +31,27 @@ Zbiór jest dostępny w plikach tego repozytorium (plik o nazwie `Cancer_Data.cs
 ### Eksploracja danych
 
 Podejrzenie pierwszych 30 rekordów
+
 ```Python
 df.head(30)
 ```
 Spis wszystkich zmiennych (nazw kolumn) wraz z liczebnością niepustych wartości i typem danych
+
 ```Python
 df.info()
 ```
 Sprawdzenie obecności braków danych dla każdej zmiennej (na wszelki wypadek, mimo że było to "ręcznie" widoczne w wyniku poprzedniego kodu)
+
 ```Python
 df.isna().max()
 ```
 Sprawdzenie wartości zmiennej `diagnosis` wraz z ich liczebnością
+
 ```Python
 df['diagnosis'].value_counts()
 ```
 Sprawdzenie podstawowych statystyk dla zmiennych numerycznych/liczbowych
+
 ```Python
 df.describe()
 ```
