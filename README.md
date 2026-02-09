@@ -229,23 +229,45 @@ confusion_matrix(test_y, test_pred)
 ```
 <img width="420" height="96" alt="image" src="https://github.com/user-attachments/assets/1dc35f81-87da-406f-8d34-562f3ab49ad6" />
 
-Jakość modelu "na oko" wygląda bardzo dobrze. Sprawdźmy to jeszcze w postaci konkretnej metryki – Accuracy Score – policzonej dla zbioru treningowego i testowego
+Jakość modelu "na oko" wygląda bardzo dobrze. Sprawdźmy to jeszcze w postaci konkretnych metryk (Accuracy Score, TPR, FNR, TNR i FPR) policzonych dla zbioru treningowego i testowego
 
 ```Python
 accuracy_score(train_y, train_pred)
 ```
 
-Wartość Accuracy Score dla zbioru treningowego wyszła na poziomie około 0.94.
+Wartość Accuracy Score dla zbioru treningowego wyszła na poziomie około 0.943.
 
 ```Python
 accuracy_score(test_y, test_pred)
 ```
 
-Wartość Accuracy Score dla zbioru testowego wyszła na poziomie około 0.96.
+Wartość Accuracy Score dla zbioru testowego wyszła na poziomie około 0.961.
+
+```Python
+recall_score(test_y, test_pred)
+```
+Wartość TPR (sensitivity, recall) dla zbioru testowego wyszła na poziomie około 0.946.
+
+```Python
+1 - recall_score(test_y, test_pred)
+```
+
+Wartość FNR dla zbioru testowego wyszła na poziomie około 0.054.
+
+```Python
+recall_score(test_y, test_pred, pos_label=0)
+```
+Wartość TNR (spesitivity) dla zbioru testowego wyszła na poziomie około 0.969
+
+```Python
+1 - recall_score(test_y, test_pred, pos_label=0)
+```
+
+Wartość FPR dla zbioru testowego wyszła na poziomie około 0.031.
 
 # Wniosek dla aktualnej jakości / aktualnych metryk modelu
 
-Jakość modelu jest bardzo wysoka i stabilna (nie występuje zjawisko przeuczenia i związanego z nim spadku jakości na zbiorze testowym względem treningowego). W kolejnym kroku należy zastanowić się nad celem "biznesowym" (czy zależy nam bardziej na poprawnym diagnozowaniu **wszystkich** nowotworów złośliwych kosztem błędnego diagnozowania nowotworów łagodnych jako złośliwe, czy może odwrotnie) w celu lepszego dopasowania modelu do naszych potrzeb.
+Jakość modelu jest bardzo wysoka i stabilna (nie występuje zjawisko przeuczenia i związanego z nim spadku jakości na zbiorze testowym względem treningowego). Spośród wszystkich przypadków nowotworów złośliwych około 95% byłoby przewidywane/diagnozowane przez model poprawnie, natomiast spośród wszystkich przypadków nowotworów łagodnych około 97% byłoby przewidywanych/diagnozowanych przez model poprawnie. W kolejnym kroku należy zastanowić się nad celem "biznesowym" (czy zależy nam bardziej na poprawnym diagnozowaniu **wszystkich** nowotworów złośliwych kosztem zwiększonego błędnego diagnozowania nowotworów łagodnych jako złośliwe, czy może odwrotnie) w celu lepszego dopasowania modelu do naszych potrzeb.
 
 # Analizowanie różnych poziomów odcięcia / tresholdów / punktów cut-off w oparciu o krzywą ROC
 
@@ -306,4 +328,4 @@ idx_first_1, threshold_at_first_1, fpr_at_first_1
 <img width="458" height="50" alt="image" src="https://github.com/user-attachments/assets/56e30263-00ef-4672-8957-d4fde4d9494b" />
 
 
-Poziom odcięcia, dla którego wszystkie nowotwory złośliwe byłyby zawsze wykrywane wynosiłby 0.209611944215763. Trzeba jednak mieć na uwadze, że przy tym poziomie odcięcia metryka FPR wynosi 0.09375, co oznacza, że około 9% nowotworów łagodnych byłoby błędnie diagnozowanych jako złośliwe.
+Poziom odcięcia, dla którego wszystkie nowotwory złośliwe byłyby zawsze wykrywane (diagnozowane poprawnie) wynosiłby 0.209611944215763. Trzeba jednak mieć na uwadze, że przy tym poziomie odcięcia metryka FPR wynosi 0.09375, co oznacza, że około 9% nowotworów łagodnych byłoby błędnie diagnozowanych jako złośliwe (przy domyślnym poziomie odcięcia jedynie około 3% spośród nich byłoby diagnozowanych błędnie jako złośliwe).
