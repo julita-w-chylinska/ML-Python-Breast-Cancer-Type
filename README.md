@@ -157,7 +157,7 @@ for i in x_names:
     outlier_column_names.append(f'{i}_outlier')
 ```
 
-W wyniku zadziałania powyższej pętli, to zbioru danych zostały dołączone następujące kolumny/zmienne (których nazwy zostały mieszczone w liście `outlier_column_names`):
+W wyniku zwywołania powyższej pętli, do zbioru danych zostały dołączone następujące kolumny/zmienne (których nazwy zostały również umieszczone w liście `outlier_column_names`):
 
 <img width="416" height="190" alt="Zrzut ekranu 2026-02-09 161311" src="https://github.com/user-attachments/assets/093cf03d-e8cb-4c7f-8eea-ac5fc857162b" />
 
@@ -217,6 +217,32 @@ train_pred = model_1.predict(train_x)
 test_pred = model_1.predict(test_x)
 ```
 
+Podejrzenie macierzy pomyłek dla zbioru treningowego i testowego
 
+```Python
+confusion_matrix(train_y, train_pred)
+```
+<img width="449" height="86" alt="image" src="https://github.com/user-attachments/assets/061e5966-a703-4191-a2a4-ea10b233f41d" />
 
+```Python
+confusion_matrix(test_y, test_pred)
+```
+<img width="420" height="96" alt="image" src="https://github.com/user-attachments/assets/1dc35f81-87da-406f-8d34-562f3ab49ad6" />
 
+Jakość modelu "na oko" wygląda bardzo dobrze. Sprawdźmy to jeszcze w postaci konkretnej metryki – Accuracy Score – policzonej dla zbioru treningowego i testowego
+
+```Python
+accuracy_score(train_y, train_pred)
+```
+
+Wartość Accuracy Score dla zbioru treningowego wyszła na poziomie około 0.94.
+
+```Python
+accuracy_score(test_y, test_pred)
+```
+
+Wartość Accuracy Score dla zbioru testowego wyszła na poziomie około 0.96.
+
+# Wniosek dla aktualnej jakości modelu
+
+Jakość modelu jest bardzo wysoka i stabilna (nie występuje zjawisko przeuczenia i związanego z nim spadku jakości na zbiorze testowym względem treningowego). W kolejnym kroku należy zastanowić się nad celem "biznesowym" (czy zależy nam bardziej na poprawnym diagnozowaniu **wszystkich** nowotworów złośliwych kosztem błędnego diagnozowania nowotworów łagodnych jako złośliwe, czy może odwrotnie) w celu lepszego dopasowania modelu do naszych potrzeb.
