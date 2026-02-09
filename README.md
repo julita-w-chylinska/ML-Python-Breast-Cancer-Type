@@ -92,14 +92,19 @@ sns.heatmap(round(df[df.columns[2:]].corr('spearman').sort_values(by = 'target')
 plt.show()
 ```
 
+Zmienną nasilniej skorelowaną ze zmienną celu jest `perimeter_worst`. Włączymy ją do modelu, a teraz sprawdzamy jej korelację z pozostałymi zmiennymi.
+
 <img width="669" height="665" alt="Correlation_Matrix_Cancer_A" src="https://github.com/user-attachments/assets/d99ea21b-46b4-42b6-9f38-6951e2926dd5" />
 
+Przyjmując zasadę o włączaniu do modelu takich zmiennych, których wartość bezwględna korelacji ze zmienną celu wynosi CO NAJMNIEJ 0.4, a z innymi – włączonymi już do modelu – zmiennymi MNIEJ NIŻ 0.7, jako następną zmienną wybieramy `perimeter_se`.
 
 <img width="669" height="665" alt="Correlation_Matrix_Cancer_B" src="https://github.com/user-attachments/assets/78117d8a-dfa0-4564-9bb7-122b59942e54" />
 
+Przyjmując zasadę o włączaniu do modelu takich zmiennych, których wartość bezwględna korelacji ze zmienną celu wynosi CO NAJMNIEJ 0.4, a z innymi – włączonymi już do modelu – zmiennymi MNIEJ NIŻ 0.7, jako następną zmienną wybieramy `perimeter_worst`. Do tabeli korelacji dołączamy tę zmienną w celu poszukiwania kolejnej nadającej się do modelu.
 
 <img width="669" height="788" alt="Correlation_Matrix_Cancer_C" src="https://github.com/user-attachments/assets/60028dd7-6f2b-4de9-8b90-bf43b8697358" />
 
+Następną zmienną spełniającą warunki jest `compa...
 
 <img width="669" height="788" alt="Correlation_Matrix_Cancer_D" src="https://github.com/user-attachments/assets/d3ad24e8-f07f-42e3-9053-f3bc48b03df3" />
 
