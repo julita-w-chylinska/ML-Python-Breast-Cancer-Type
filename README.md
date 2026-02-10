@@ -22,7 +22,7 @@ import seaborn as sns
 ### Załadowanie zbioru danych
 
 ```Python
-os.getcwd()
+os.chdir('../')
 df = pd.read_csv('data/Cancer_Data.csv')
 ```
 
