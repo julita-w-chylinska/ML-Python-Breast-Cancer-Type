@@ -201,7 +201,7 @@ for i in x_names:
 
 As a result, the following outlier indicator columns are created (and stored in `outlier_column_names`):
 
-<img width="416" height="190" alt="Zrzut ekranu 2026-02-09 161311" src="https://github.com/user-attachments/assets/093cf03d-e8cb-4c7f-8eea-ac5fc857162b" />
+<img width="250" height="114" alt="Zrzut ekranu 2026-02-09 161311" src="https://github.com/user-attachments/assets/093cf03d-e8cb-4c7f-8eea-ac5fc857162b" />
 
 Create a single column indicating whether an observation is an outlier for **any** of the selected model features:
 
@@ -215,7 +215,7 @@ Inspect how many observations are flagged as outliers (these will be excluded fr
 df['outlier_total'].value_counts()
 ```
 
-<img width="201" height="113" alt="image" src="https://github.com/user-attachments/assets/942ff6af-dde0-4163-a214-c28a953ca186" />
+<img width="120" height="67" alt="image" src="https://github.com/user-attachments/assets/942ff6af-dde0-4163-a214-c28a953ca186" />
 
 
 ### Train/test split
@@ -269,13 +269,13 @@ Confusion matrices (training and test):
 confusion_matrix(train_y, train_pred)
 ```
 
-<img width="449" height="86" alt="image" src="https://github.com/user-attachments/assets/061e5966-a703-4191-a2a4-ea10b233f41d" />
+<img width="300" height="57" alt="image" src="https://github.com/user-attachments/assets/061e5966-a703-4191-a2a4-ea10b233f41d" />
 
 ```Python
 confusion_matrix(test_y, test_pred)
 ```
 
-<img width="420" height="96" alt="image" src="https://github.com/user-attachments/assets/1dc35f81-87da-406f-8d34-562f3ab49ad6" />
+<img width="280" height="64" alt="image" src="https://github.com/user-attachments/assets/1dc35f81-87da-406f-8d34-562f3ab49ad6" />
 
 The confusion matrices look strong. Next, compute key metrics (Accuracy Score, TPR, FNR, TNR, and FPR) on training and test sets:
 
@@ -387,7 +387,7 @@ fpr_at_first_1 = fpr_test[idx_first_1]
 idx_first_1, threshold_at_first_1, fpr_at_first_1
 ```
 
-<img width="458" height="50" alt="image" src="https://github.com/user-attachments/assets/56e30263-00ef-4672-8957-d4fde4d9494b" />
+<img width="250" height="27" alt="image" src="https://github.com/user-attachments/assets/56e30263-00ef-4672-8957-d4fde4d9494b" />
 
 
 ### Conclusions and recommendations
