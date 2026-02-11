@@ -317,12 +317,16 @@ fpr_train, tpr_train, threshold_train = roc_curve(train_y, train_pred_p)
 fpr_test, tpr_test, threshold_test = roc_curve(test_y, test_pred_p)
 ```
 
-Plot the ROC curve:
+Count the AUC score:
 
 ```Python
 auc_train = round(roc_auc_score(train_y, train_pred_p), 3)
 auc_test = round(roc_auc_score(test_y, test_pred_p), 3)
+```
 
+Plot the ROC curve:
+
+```Python
 plt.plot(fpr_train, tpr_train, label = "train")
 plt.plot(fpr_test, tpr_test, label = "test")
 plt.plot(np.arange(0,1,0.01), np.arange(0,1,0.01), '--')
