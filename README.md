@@ -166,7 +166,7 @@ plt.show()
 
 <img width="669" height="788" alt="Correlation_Matrix_Cancer_E" src="https://github.com/user-attachments/assets/119a7c57-bcb1-443b-b9fe-138de2604483" />
 
-There is no more variable meering the criteria.
+There is no more variables meeting the criteria.
 
 ### Final feature list used in the model
 
