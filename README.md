@@ -330,3 +330,9 @@ idx_first_1, threshold_at_first_1, fpr_at_first_1
 
 
 Poziom odcięcia, dla którego wszystkie nowotwory złośliwe byłyby zawsze wykrywane (diagnozowane poprawnie) wynosiłby 0.209611944215763. Trzeba jednak mieć na uwadze, że przy tym poziomie odcięcia metryka FPR wynosi 0.09375, co oznacza, że około 9% nowotworów łagodnych byłoby błędnie diagnozowanych jako złośliwe (przy domyślnym poziomie odcięcia jedynie około 3% spośród nich byłoby diagnozowanych błędnie jako złośliwe).
+
+## Author: Julita Wawreszuk-Chylińska (based on Data Tutorials project)
+
+**LinkedIn**: [Julita Wawreszuk-Chylińska](https://www.linkedin.com/in/julita-wawreszuk-chylińska/)
+
+Thank you for your interest in this project!
