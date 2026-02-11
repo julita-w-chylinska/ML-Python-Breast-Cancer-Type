@@ -1,8 +1,8 @@
-# Breast Cancer Type Prediction Model (Machine Learning in Python)
+# Breast Cancer Type Prediction Model (ML in Python)
 
 ## Project Overview
 
-This project demonstrates the proccess of building ML model for predicting whether the breast tumor* is benign (noncancerous) or malignant (cancerous). The goal was to built a model with at leart 0.95 accuracy score. This solution should help doctors make faster diagnoses and, therefore, reduce mortality. The process involved data preprocessing, chossing valid variables based on correlations, training a model and evaluating it.
+This project demonstrates the proccess of building Machine Learning model for predicting whether the breast tumor* is benign (noncancerous) or malignant (cancerous). The goal was to built a model with at least 0.95 accuracy score. This solution should help doctors make faster diagnoses and, therefore, reduce mortality. The process involved data preprocessing, chossing valid variables based on correlations, training a model and evaluating it.
 
 *the data set says "cancer", but – in fact – cancer can't be benign, it's always malignant, so actually there is differentiation between types of tumors
 
@@ -328,6 +328,7 @@ idx_first_1, threshold_at_first_1, fpr_at_first_1
 
 <img width="458" height="50" alt="image" src="https://github.com/user-attachments/assets/56e30263-00ef-4672-8957-d4fde4d9494b" />
 
+### Wnioski i zalecenia
 
 Poziom odcięcia, dla którego wszystkie nowotwory złośliwe byłyby zawsze wykrywane (diagnozowane poprawnie) wynosiłby 0.209611944215763. Trzeba jednak mieć na uwadze, że przy tym poziomie odcięcia metryka FPR wynosi 0.09375, co oznacza, że około 9% nowotworów łagodnych byłoby błędnie diagnozowanych jako złośliwe (przy domyślnym poziomie odcięcia jedynie około 3% spośród nich byłoby diagnozowanych błędnie jako złośliwe).
 
