@@ -38,7 +38,7 @@ df = pd.read_csv('data/Cancer_Data.csv')
 
 ### Basic Data Exploration
 
-Preview the first 30 rows:
+Preview first rows:
 
 ```Python
 df.head(30)
