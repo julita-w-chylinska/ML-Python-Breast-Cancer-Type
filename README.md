@@ -12,11 +12,14 @@ This project demonstrates the process of building a machine learning model that 
 
 ```Python
 from  sklearn.linear_model import LogisticRegression
+
 import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, roc_curve, roc_auc_score
 ```
 
 ### Load the dataset
@@ -317,6 +320,9 @@ fpr_test, tpr_test, threshold_test = roc_curve(test_y, test_pred_p)
 Plot the ROC curve:
 
 ```Python
+auc_train = round(roc_auc_score(train_y, train_pred_p), 3)
+auc_test = round(roc_auc_score(test_y, test_pred_p), 3)
+
 plt.plot(fpr_train, tpr_train, label = "train")
 plt.plot(fpr_test, tpr_test, label = "test")
 plt.plot(np.arange(0,1,0.01), np.arange(0,1,0.01), '--')
