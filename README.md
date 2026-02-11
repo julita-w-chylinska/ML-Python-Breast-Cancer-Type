@@ -177,7 +177,7 @@ x_names = ['perimeter_worst', 'perimeter_se', 'compactness_worst', 'concave poin
 
 ### Outlier analysis
 
-Outliers are identified using the **interquartile range (IQR)** method. To keep the modeling pipeline simple and robust, an observation is excluded if it is flagged as an outlier for **any** of the selected model features. This is a deliberate trade-off: it reduces the training sample size, but may improve model stability by limiting the influence of extreme values.
+Outliers are identified using the **interquartile range (IQR)** method. To keep the modeling pipeline simple and robust, an observation will be excluded if it is flagged as an outlier for **any** of the selected model features. This is a deliberate trade-off: it reduces the training sample size, but may improve model stability by limiting the influence of extreme values.
 
 Define a helper function that flags outliers:
 
@@ -214,6 +214,8 @@ Inspect how many observations are flagged as outliers (these will be excluded fr
 ```Python
 df['outlier_total'].value_counts()
 ```
+
+<img width="201" height="113" alt="image" src="https://github.com/user-attachments/assets/942ff6af-dde0-4163-a214-c28a953ca186" />
 
 
 ### Train/test split
