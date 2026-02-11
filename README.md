@@ -156,8 +156,17 @@ plt.show()
 
 <img width="669" height="788" alt="Correlation_Matrix_Cancer_D" src="https://github.com/user-attachments/assets/d3ad24e8-f07f-42e3-9053-f3bc48b03df3" />
 
-The final variable meeting the criteria is `texture_worst`.
+The next variable meeting the criteria is `texture_worst`, which is then added:
 
+```Python
+plt.figure(figsize = (6,8))
+sns.heatmap(round(df[df.columns[2:]].corr('spearman').sort_values(by = 'target'), 2)[['target', 'perimeter_worst', 'perimeter_se', 'compactness_worst', 'concave points_se', 'texture_worst']], annot = True, linewidths = 0.1)
+plt.show()
+```
+
+<img width="669" height="788" alt="Correlation_Matrix_Cancer_E" src="https://github.com/user-attachments/assets/119a7c57-bcb1-443b-b9fe-138de2604483" />
+
+There is no more variable meering the criteria.
 
 ### Final feature list used in the model
 
