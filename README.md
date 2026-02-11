@@ -10,6 +10,7 @@ This project demonstrates the process of building a machine learning model that 
 
 ## Project Structure and Results
 
+
 ### Import required libraries and objects
 
 ```Python
@@ -24,6 +25,7 @@ import seaborn as sns
 from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, roc_curve, roc_auc_score
 ```
 
+
 ### Load the dataset
 
 ```Python
@@ -32,6 +34,7 @@ df = pd.read_csv('data/Cancer_Data.csv')
 ```
 
 The dataset is available in this repository (file: `Cancer_Data.csv`) and on Kaggle: https://www.kaggle.com/datasets/erdemtaha/cancer-data
+
 
 ### Exploratory Data Analysis (EDA)
 
@@ -76,7 +79,8 @@ The dataset contains **569 records** and the following variables:
   `radius_worst`, `texture_worst`, `perimeter_worst`, `area_worst`, `smoothness_worst`, `compactness_worst`, `concavity_worst`, `concave points_worst`, `symmetry_worst`, `fractal_dimension_worst`
 - A likely accidental column `Unnamed: 32` containing only missing values (`NaN`)
 
-## Data Cleaning and Transformation
+
+### Data Cleaning and Transformation
 
 The data quality is reasonably high, so preparation includes only two steps:
 
@@ -92,6 +96,7 @@ Since the objective is to detect **malignant** tumors, malignant cases are encod
 ```Python
 df['target'] = (df['diagnosis'] == 'M').astype(int)
 ```
+
 
 ### Correlation analysis (feature selection)
 
@@ -153,13 +158,15 @@ plt.show()
 
 The final variable meeting the criteria is `texture_worst`.
 
+
 ### Final feature list used in the model
 
 ```Python
 x_names = ['perimeter_worst', 'perimeter_se', 'compactness_worst', 'concave points_se', 'texture_worst']
 ```
 
-## Outlier analysis
+
+### Outlier analysis
 
 Outliers are identified using the **interquartile range (IQR)** method. To keep the modeling pipeline simple and robust, an observation is excluded if it is flagged as an outlier for **any** of the selected model features. This is a deliberate trade-off: it reduces the training sample size, but may improve model stability by limiting the influence of extreme values.
 
@@ -199,7 +206,8 @@ Inspect how many observations are flagged as outliers (these will be excluded fr
 df['outlier_total'].value_counts()
 ```
 
-## Train/test split
+
+### Train/test split
 
 Import the train/test split function:
 
@@ -234,7 +242,8 @@ Fit the model:
 model_1.fit(train_x, train_y)
 ```
 
-## Model evaluation
+
+### Model evaluation
 
 Generate predictions for both training and test sets:
 
@@ -295,6 +304,7 @@ Test **TNR** (specificity) is approximately **0.969**.
 
 Test **FPR** is approximately **0.031**.
 
+
 ### Interpretation of the current model performance
 
 The model quality is high and appears stable (there is no clear sign of overfitting, as test performance does not degrade compared to training). Among malignant cases, approximately **95%** would be correctly predicted as malignant. Among benign cases, approximately **97%** would be correctly predicted as benign.
@@ -303,7 +313,8 @@ A key next step is aligning the model threshold with the “business” (clinica
 - prioritize detecting **all** malignant tumors (minimize false negatives), even if it increases false positives, or  
 - prioritize minimizing false positives, even if it increases false negatives.
 
-## ROC curve and decision threshold analysis
+
+### ROC curve and decision threshold analysis
 
 Compute predicted probabilities (for both training and test sets) of belonging to class `1` (malignant):
 
@@ -367,7 +378,8 @@ idx_first_1, threshold_at_first_1, fpr_at_first_1
 
 <img width="458" height="50" alt="image" src="https://github.com/user-attachments/assets/56e30263-00ef-4672-8957-d4fde4d9494b" />
 
-## Conclusions and recommendations
+
+### Conclusions and recommendations
 
 A threshold that ensures all malignant tumors are detected (i.e., **TPR = 1**) is **0.209611944215763**. However, at this threshold the **FPR** is **0.09375**, meaning that approximately **9%** of benign tumors would be incorrectly classified as malignant. Under the default threshold, only about **3%** of benign tumors are incorrectly classified as malignant.
 
