@@ -136,7 +136,7 @@ plt.show()
 
 <img width="669" height="665" alt="Correlation_Matrix_Cancer_B" src="https://github.com/user-attachments/assets/78117d8a-dfa0-4564-9bb7-122b59942e54" />
 
-The next variable meeting the criteria is `compactness_worst`, which is then added:
+Next, `compactness_mean` and `compactness_worst` show comparable correlations with the target. Since `compactness_worst` is significantly less correlated with the previously selected feature, it is chosen to reduce redundancy.
 
 ```Python
 plt.figure(figsize = (6,8))
