@@ -65,8 +65,11 @@ df['diagnosis'].value_counts()
 Compute basic descriptive statistics for numerical variables:
 
 ```Python
-df.describe()
+df.drop(columns=["id"]).describe()
 ```
+
+<img width="1893" height="461" alt="image" src="https://github.com/user-attachments/assets/b42882c7-e8b9-41ff-aebd-42f8ec327aac" />
+
 
 The dataset contains **569 records** and the following variables:
 - `id` (dtype: `int64`)
