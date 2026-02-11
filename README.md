@@ -343,7 +343,7 @@ The following code finds the first index at which `tpr_test` equals exactly `1.0
 idxs = np.where(tpr_test == 1.0)[0]
 
 if idxs.size == 0:
-    raise ValueError("TPR nigdy nie osiąga dokładnie wartości 1.0 dla podanych progów.")
+    raise ValueError("TPR never achieves 1.0 value at given threshold.")
 
 idx_first_1 = idxs[0]
 
