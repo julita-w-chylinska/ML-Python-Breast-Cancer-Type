@@ -8,8 +8,11 @@ This project demonstrates the process of building a machine learning model that 
 
 > **Disclaimer (educational use only):** This repository is an educational machine learning project based on a public, historical dataset. It is **not** a medical device and must not be used to diagnose, treat, or make clinical decisions without appropriate clinical validation, regulatory compliance, and oversight by qualified healthcare professionals. Any performance metrics reported here reflect this specific dataset and setup and may not generalize to real-world clinical populations.
 
-## Project Structure and Results
+## Dataset
 
+The dataset is available in this repository (file: `Cancer_Data.csv`) and on Kaggle: https://www.kaggle.com/datasets/erdemtaha/cancer-data
+
+## Project Structure and Results
 
 ### Import required libraries and objects
 
@@ -32,9 +35,6 @@ from sklearn.metrics import confusion_matrix, accuracy_score, recall_score, roc_
 os.chdir('../')
 df = pd.read_csv('data/Cancer_Data.csv')
 ```
-
-The dataset is available in this repository (file: `Cancer_Data.csv`) and on Kaggle: https://www.kaggle.com/datasets/erdemtaha/cancer-data
-
 
 ### Exploratory Data Analysis (EDA)
 
