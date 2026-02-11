@@ -397,6 +397,6 @@ A threshold that ensures all malignant tumors are detected (i.e., **TPR = 1**) i
 
 ## Author: Julita Wawreszuk-Chylińska
 
-**LinkedIn**: [Julita Wawreszuk-Chylińska](www.linkedin.com/in/julita-w-chylinska)
+**LinkedIn**: [Julita Wawreszuk-Chylińska](http://www.linkedin.com/in/julita-w-chylinska)
 
 Thank you for your interest in this project!
