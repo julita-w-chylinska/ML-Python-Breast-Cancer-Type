@@ -136,7 +136,7 @@ plt.show()
 
 <img width="669" height="665" alt="Correlation_Matrix_Cancer_B" src="https://github.com/user-attachments/assets/78117d8a-dfa0-4564-9bb7-122b59942e54" />
 
-Next, `compactness_mean` and `compactness_worst` show comparable correlations with the target. Since `compactness_worst` is significantly less correlated with the previously selected feature, it is chosen to reduce redundancy.
+Next, `compactness_mean` and `compactness_worst` show the same correlations with the target. Since `compactness_worst` is significantly less correlated with the previously selected feature, it is chosen for the model.
 
 ```Python
 plt.figure(figsize = (6,8))
@@ -295,7 +295,7 @@ Test accuracy is approximately **0.961**.
 recall_score(test_y, test_pred)
 ```
 
-Test **TPR** (sensitivity / recall) is approximately **0.946**.
+Test **TPR** (sensitivity/recall) is approximately **0.946**.
 
 ```Python
 1 - recall_score(test_y, test_pred)
@@ -318,7 +318,7 @@ Test **FPR** is approximately **0.031**.
 
 ### Interpretation of the current model performance
 
-The model quality is high and appears stable (there is no clear sign of overfitting, as test performance does not degrade compared to training). Among malignant cases, approximately **95%** would be correctly predicted as malignant. Among benign cases, approximately **97%** would be correctly predicted as benign.
+The model quality is high and appears stable (there is no sign of overfitting, as test performance does not degrade compared to training). Among malignant cases, approximately **95%** would be correctly predicted as malignant. Among benign cases, approximately **97%** would be correctly predicted as benign.
 
 A key next step is aligning the model threshold with the “business” (clinical) objective:  
 - prioritize detecting **all** malignant tumors (minimize false negatives), even if it increases false positives, or  
