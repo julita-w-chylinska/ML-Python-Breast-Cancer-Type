@@ -4,7 +4,7 @@
 
 This project demonstrates the process of building a machine learning model that predicts whether a breast tumor is **benign (non-cancerous)** or **malignant (cancerous)**. The project goal was to build a model achieving at least **0.95 accuracy**. The workflow includes data loading, exploratory analysis, minimal data cleaning, feature selection based on correlations, model training, and evaluation.
 
-> **Terminology note:** The dataset uses the word “cancer”, but the labels actually represent **tumor diagnosis**: malignant vs benign. In medical terminology, *cancer* typically refers to malignant neoplasms, while benign tumors are not considered cancer.
+> **Terminology note:** The dataset uses the word “cancer”, but the labels actually represent **tumor** diagnosis: malignant vs benign. In medical terminology, *cancer* typically refers to malignant neoplasms, while benign tumors are not considered cancer.
 
 > **Disclaimer (educational use only):** This repository is an educational machine learning project based on a public, historical dataset. It is **not** a medical device and must not be used to diagnose, treat, or make clinical decisions without appropriate clinical validation, regulatory compliance, and oversight by qualified healthcare professionals. Any performance metrics reported here reflect this specific dataset and setup and may not generalize to real-world clinical populations.
 
@@ -36,7 +36,7 @@ os.chdir('../')
 df = pd.read_csv('data/Cancer_Data.csv')
 ```
 
-### Exploratory Data Analysis (EDA)
+### Basic Data Exploration
 
 Preview the first 30 rows:
 
